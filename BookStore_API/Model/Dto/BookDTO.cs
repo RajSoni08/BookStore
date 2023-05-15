@@ -12,6 +12,9 @@ namespace BookStore_API.Model.Dto
         public int AuthorID { get; set; }
         [Required]
         public int PublisherID { get; set; }
+        [Required]
+        public AuthorDTO Author { get; set; }
+        public PublisherDTO Publisher { get; set; }
 
         [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Only Alphabets and Numbers allowed.")]
         public string ISBN { get; set; }

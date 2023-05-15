@@ -27,7 +27,7 @@ namespace BookStore_API.Controllers
         [HttpGet]
         public async Task<ActionResult<BookDTO>> GetUsers()
         {
-            return Ok(await _dbBook.GetAllAsync());
+            return Ok(await _dbBook.GetAllAsync(includeProperties:"Author,Publisher"));
 
         }
         [HttpPost]

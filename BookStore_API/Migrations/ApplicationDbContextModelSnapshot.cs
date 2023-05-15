@@ -70,6 +70,10 @@ namespace BookStore_API.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("AuthorID");
+
+                    b.HasIndex("PublisherID");
+
                     b.ToTable("book");
                 });
 
@@ -127,6 +131,25 @@ namespace BookStore_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("user");
+                });
+
+            modelBuilder.Entity("BookStore_API.Model.Book", b =>
+                {
+                    b.HasOne("BookStore_API.Model.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore_API.Model.Publisher", "Publisher")
+                        .WithMany()
+                        .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Publisher");
                 });
 #pragma warning restore 612, 618
         }
